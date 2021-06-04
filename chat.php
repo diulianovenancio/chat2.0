@@ -73,7 +73,8 @@
 		
 		<form action="" method="post" enctype="multipart/form-data" style="float:left; width:500px;">
 			<?php
-				$bloqueados = $dadosUser['blocks'];
+				$bloqueados = (empty($dadosUser['blocks'])) ? 0 : $dadosUser['blocks'] ;
+				//$bloqueados = $dadosUser['blocks'];
 				$pegaBloqueados = BD::conn()->prepare("SELECT * FROM `usuarios` WHERE `id` IN($bloqueados)");
 				$pegaBloqueados->execute();
 				while($bloqueado = $pegaBloqueados->fetch()){
